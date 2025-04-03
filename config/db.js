@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const conectarDB = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/registro', {
+    await mongoose.connect('mongodb://localhost:27017/r12', {
       //useNewUrlParser: true,
       //useUnifiedTopology: true
     });
