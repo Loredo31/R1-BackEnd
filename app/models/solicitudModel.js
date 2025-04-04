@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const solicitudSchema = new mongoose.Schema({
+    numeroFolio: { type: String, required: true, unique: true},
     nombreEmpresa: { type: String, required: true },
-    numeroFolio: { type: String, required: true, unique: true },
     estatus: { type: String, enum: ["Pendiente", "Aprobada", "Rechazada"], default: "Pendiente" },
     carrera: { type: String, required: true },
     puesto: { type: String, required: true },
@@ -15,7 +15,7 @@ const solicitudSchema = new mongoose.Schema({
     apoyoEconomico: { type: Number, default: 0 },
     aprendizaje: { type: String },
     modalidad: { type: String, enum: ["Presencial", "Remota", "Híbrida"], required: true },
-    descripciónTrabajo: { type: String, required: true }
+    descripcionTrabajo: { type: String, required: true }
 });
 
 module.exports = mongoose.model('Solicitude', solicitudSchema);
