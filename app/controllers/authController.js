@@ -1,51 +1,3 @@
-// const Empresa = require("../models/empresaModel"); 
-// const ServiciosEscolare = require("../models/serviciosEscolaresModel");
-// const bcrypt = require('bcryptjs');  
-// const jwt = require('jsonwebtoken');
-// const login = async (req, res) => {
-//     const { correo, contrasenia } = req.body;
-  
-//   try {
-//     // Buscar empresa por correo
-//     const empresaEncontrada = await Empresa.findOne({ correo: correo });
-//     if (!empresaEncontrada) {
-//       return res.status(404).json({ msg: "Empresa no encontrada" });
-//     }
-
-//     // Comparar contraseñas
-//     const passwordMatch = await bcrypt.compare(contrasenia, empresaEncontrada.contrasenia);
-//     if (!passwordMatch) {
-//       return res.status(401).json({ msg: "Contraseña incorrecta" });
-//     }
-
-//     // Generar Token JWT
-//     const token = jwt.sign(
-//       { id: empresaEncontrada._id, rol: empresaEncontrada.rol, nombre: empresaEncontrada.nombreEmpresa },
-//       process.env.JWT_SECRET,
-//       { expiresIn: "8h" }
-//     );
-
-//     res.json({
-//       msg: "Inicio de sesión exitoso",
-//       token,
-//       empresa: {
-//         id: empresaEncontrada._id,
-//         correo: empresaEncontrada.correo,
-//         nombre: empresaEncontrada.nombreEmpresa,
-//         rol: empresaEncontrada.rol,
-//       },
-//     });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ msg: "Error en el servidor", error: error.message || error });
-//   }
-// };
-
-// module.exports = { login };
-
-
-
-
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Empresa = require('../models/empresaModel');
@@ -63,12 +15,12 @@ exports.login = async (req, res) => {
         // Buscar primero en Empresa
         usuarioEncontrado = await Empresa.findOne({ correo });
         if (usuarioEncontrado) {
-            tipoUsuario = "Empresa";
+            tipoUsuario = 1;
         } else {
             // Si no está en Empresa, buscar en ServiciosEscolares
             usuarioEncontrado = await ServiciosEscolares.findOne({ correo });
             if (usuarioEncontrado) {
-                tipoUsuario = "ServiciosEscolares";
+                tipoUsuario = 2;
             }
         }
 
@@ -92,7 +44,7 @@ exports.login = async (req, res) => {
             {
                 id: usuarioEncontrado._id,
                 rol: tipoUsuario, // Se usa el tipo de usuario detectado
-                nombre: usuarioEncontrado.nombreEmpresa || usuarioEncontrado.Nombre
+                nombre: usuarioEncontrado.nombreEmpresa || usuarioEncontrado.nombre
             },
             process.env.JWT_SECRET,
             { expiresIn: "8h" }
@@ -103,8 +55,8 @@ exports.login = async (req, res) => {
             token,
             usuario: {
                 id: usuarioEncontrado._id,
-                correo: usuarioEncontrado.correo || usuarioEncontrado.Correo,
-                nombre: usuarioEncontrado.nombreEmpresa || usuarioEncontrado.Nombre,
+                correo: usuarioEncontrado.correo || usuarioEncontrado.correo,
+                nombre: usuarioEncontrado.nombreEmpresa || usuarioEncontrado.nombreombre,
                 rol: tipoUsuario
             },
         });

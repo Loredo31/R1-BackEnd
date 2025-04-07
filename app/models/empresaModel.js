@@ -13,7 +13,7 @@ const EmpresaSchema = new mongoose.Schema({
         ciudad: { type: String, required: true }
     },
     contrasenia: { type: String, required: true } // Campo de contraseña
-}, { timestamps: true });
+});
 
 
 module.exports = mongoose.model('Empresa', EmpresaSchema);

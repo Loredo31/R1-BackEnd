@@ -11,6 +11,6 @@ const ServiciosEscolaresSchema = new mongoose.Schema({
     universidad: { type: String, required: true },
     departamento: { type: String, required: true },
     funciones: [{ type: String }]
-}, { timestamps: true });
+});
 
 module.exports = mongoose.model('ServiciosEscolare', ServiciosEscolaresSchema);

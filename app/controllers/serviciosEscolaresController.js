@@ -1,63 +1,3 @@
-// // controllers/serviciosEscolaresController.js
-// const ServiciosEscolares = require('../models/serviciosEscolaresModel');
-
-// // Crear un nuevo servicio escolar
-// exports.createServiciosEscolares = async (req, res) => {
-//     try {
-//         const nuevoServicioEscolar = new ServiciosEscolares(req.body);
-//         await nuevoServicioEscolar.save();
-//         res.status(201).json(nuevoServicioEscolar);
-//     } catch (error) {
-//         res.status(500).json({ message: 'Error al registrar el servicio escolar', error });
-//     }
-// };
-
-// // Obtener todos los servicios escolares
-// exports.getServiciosEscolares = async (req, res) => {
-//     try {
-//         const serviciosEscolares = await ServiciosEscolares.find();
-//         res.json(serviciosEscolares);
-//     } catch (error) {
-//         res.status(500).json({ message: 'Error al obtener los servicios escolares', error });
-//     }
-// };
-
-// // Obtener un servicio escolar por ID
-// exports.getServicioEscolarById = async (req, res) => {
-//     try {
-//         const servicioEscolar = await ServiciosEscolares.findById(req.params.id);
-//         if (!servicioEscolar) return res.status(404).json({ message: 'Servicio escolar no encontrado' });
-//         res.json(servicioEscolar);
-//     } catch (error) {
-//         res.status(500).json({ message: 'Error al obtener el servicio escolar', error });
-//     }
-// };
-
-// // Actualizar un servicio escolar por ID
-// exports.updateServicioEscolar = async (req, res) => {
-//     try {
-//         const servicioEscolarActualizado = await ServiciosEscolares.findByIdAndUpdate(req.params.id, req.body, { new: true });
-//         if (!servicioEscolarActualizado) return res.status(404).json({ message: 'Servicio escolar no encontrado' });
-//         res.json(servicioEscolarActualizado);
-//     } catch (error) {
-//         res.status(500).json({ message: 'Error al actualizar el servicio escolar', error });
-//     }
-// };
-
-// // Eliminar un servicio escolar por ID
-// exports.deleteServicioEscolar = async (req, res) => {
-//     try {
-//         const servicioEscolarEliminado = await ServiciosEscolares.findByIdAndDelete(req.params.id);
-//         if (!servicioEscolarEliminado) return res.status(404).json({ message: 'Servicio escolar no encontrado' });
-//         res.json({ message: 'Servicio escolar eliminado correctamente' });
-//     } catch (error) {
-//         res.status(500).json({ message: 'Error al eliminar el servicio escolar', error });
-//     }
-// };
-
-
-
-
 const ServiciosEscolares = require('../models/serviciosEscolaresModel');
 const bcrypt = require('bcryptjs');
 
@@ -83,7 +23,7 @@ exports.createServiciosEscolares = async (req, res) => {
             correo,
             telefono,
             extension,
-            contrasenia: hashedPassword, // Guardar la contraseña encriptada
+            contrasenia: hashedPassword, 
             universidad,
             departamento,
             funciones
