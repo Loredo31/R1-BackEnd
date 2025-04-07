@@ -8,6 +8,7 @@ const login= require('./app/routes/authRoutes')
 const solicitudRoutes = require('./app/routes/solicitudRoutes');
 const empresaRoutes = require('./app/routes/empresaRoutes');
 const serviciosEscolaresRoutes = require('./app/routes/serviciosEscolaresRoutes');
+const catalogosRoutes = require('./app/routes/catalogosRoutes');
 
 // Conectar a la base de datos MongoDB
 conectarDB();
@@ -20,6 +21,7 @@ app.use("/api", login);
 app.use("/api", solicitudRoutes);
 app.use("/api", empresaRoutes);
 app.use("/api", serviciosEscolaresRoutes);
+app.use('/api', catalogosRoutes);
 
 
 // Configuración del puerto del servidor
